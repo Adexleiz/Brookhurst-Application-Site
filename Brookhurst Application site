@@ -1,0 +1,873 @@
+import { useRouter } from 'next/router';
+
+export default function ApplicationSelector() { const router = useRouter();
+
+const applications = [ { label: 'Grade 1–2 Application', path: '/grade1-2' }, { label: 'Grade 3–6 Application', path: '/grade3-6' }, { label: 'Grade 7–9 Application', path: '/grade7-9' }, { label: 'Form 2–4 Application', path: '/form2-4' }, { label: 'University/College/Polytechnic Application', path: '/university' } ];
+
+return ( <div className="bg-[#800000] min-h-screen flex flex-col items-center justify-center text-white"> <h1 className="text-3xl font-bold mb-8 text-center">Brookhurst International School Application 2025–2026</h1> <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl w-full px-4"> {applications.map((app) => ( <button key={app.path} onClick={() => router.push(app.path)} className="bg-white text-[#800000] font-semibold py-4 px-6 rounded-2xl shadow-md hover:bg-[#f0e6e6] transition" > {app.label} </button> ))} </div> <a
+href="https://wa.me/254752765940"
+className="fixed bottom-6 right-6 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg hover:bg-green-600"
+target="_blank"
+rel="noopener noreferrer"
+> Chat via WhatsApp </a> </div> ); }
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+
+const applicationTypes = [
+  {
+    label: "Grade 1–2 Application",
+    value: "grade1_2",
+    formLink: "/forms/grade1_2"
+  },
+  {
+    label: "Grade 3–6 Application",
+    value: "grade3_6",
+    formLink: "/forms/grade3_6"
+  },
+  {
+    label: "Grade 7–9 (KJESEA) Application",
+    value: "grade7_9",
+    formLink: "/forms/grade7_9"
+  },
+  {
+    label: "Form 2–4 / Pre-KCSE University Sponsorship",
+    value: "form2_4",
+    formLink: "/forms/form2_4"
+  },
+  {
+    label: "University / College / Polytechnic Sponsorship",
+    value: "university",
+    formLink: "/forms/university"
+  }
+];
+
+export default function BrookhurstApplication() {
+  const [selectedForm, setSelectedForm] = useState(null);
+
+  return (
+    <div className="min-h-screen bg-[#F8F5F5] p-6 text-center">
+      <h1 className="text-3xl font-bold text-[#800000] mb-2">
+        BROOKHURST INTERNATIONAL SCHOOL
+      </h1>
+      <p className="text-lg text-[#800000] mb-4">
+        APPLICATION PORTAL 2025–2026
+      </p>
+      <p className="text-md text-gray-700 mb-6">
+        Select your application level below to begin:
+      </p>
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+        {applicationTypes.map((option) => (
+          <Button
+            key={option.value}
+            onClick={() => setSelectedForm(option)}
+            className="bg-[#800000] text-white text-sm py-6 px-4 rounded-2xl shadow-md hover:scale-105 transition-all"
+          >
+            {option.label}
+          </Button>
+        ))}
+      </div>
+
+      {selectedForm && (
+        <div className="mt-10">
+          <p className="text-lg mb-4">You've selected:</p>
+          <h2 className="text-xl font-semibold text-[#800000]">
+            {selectedForm.label}
+          </h2>
+          <a
+            href={selectedForm.formLink}
+            className="inline-block mt-4 bg-[#800000] text-white py-2 px-6 rounded-full shadow hover:bg-[#660000] transition"
+          >
+            Fill This Form
+          </a>
+        </div>
+      )}
+
+      <div className="fixed bottom-6 right-6">
+        <a
+          href="https://wa.me/254752765940"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-600 hover:bg-green-700 text-white rounded-full px-4 py-3 shadow-lg text-sm flex items-center gap-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            className="w-5 h-5"
+            fill="currentColor"
+          >
+            <path d="M16 .396C7.178.396.005 7.569.005 16.396c0 2.866.748 5.697 2.172 8.167L.057 31.73l7.302-2.087a15.898 15.898 0 0 0 8.64 2.503c8.822 0 15.995-7.174 15.995-16S24.823.396 16 .396zm0 29.163c-2.726 0-5.391-.724-7.712-2.09l-.553-.328-4.332 1.238 1.157-4.187-.36-.574C2.273 21.63 1.49 19.053 1.49 16.396c0-7.953 6.458-14.41 14.51-14.41s14.51 6.458 14.51 14.41-6.458 14.41-14.51 14.41z" />
+            <path d="M24.44 19.278c-.376-.188-2.221-1.095-2.567-1.217-.346-.129-.598-.188-.85.188s-.976 1.217-1.196 1.466c-.22.248-.442.28-.818.093-.376-.188-1.587-.584-3.024-1.862-1.116-.994-1.87-2.22-2.09-2.597-.22-.377-.024-.58.165-.767.168-.167.376-.44.564-.66.188-.221.251-.377.377-.627.125-.25.063-.468-.031-.66-.093-.188-.85-2.058-1.165-2.82-.305-.732-.617-.632-.85-.632s-.44-.032-.67-.032-.628.093-.96.467c-.346.377-1.262 1.233-1.262 3.005s1.29 3.486 1.47 3.728c.188.248 2.532 3.87 6.13 5.42.856.369 1.522.589 2.04.754.857.273 1.638.235 2.256.142.688-.102 2.221-.905 2.537-1.78.313-.875.313-1.627.219-1.78-.094-.153-.346-.249-.722-.438z" />
+          </svg>
+          Chat with Brookhurst
+        </a>
+      </div>
+    </div>
+  );
+}
+export default function Grade1To2Form() {
+  return (
+    <div className="bg-[#F8F5F5] p-6 min-h-screen text-[#800000]">
+      <h1 className="text-2xl font-bold mb-4">Grade 1–2 Sponsorship Application Form (2025)</h1>
+
+      <form className="grid gap-4 max-w-3xl mx-auto">
+        <label htmlFor="fullName">
+          Full Name:
+          <input id="fullName" type="text" className="w-full p-2 border rounded" required />
+        </label>
+
+        <label htmlFor="gender">
+          Gender:
+          <select id="gender" className="w-full p-2 border rounded" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </label>
+
+        <label htmlFor="dob">
+          Date of Birth:
+          <input id="dob" type="date" className="w-full p-2 border rounded" required />
+        </label>
+
+        <label htmlFor="school">
+          Current School (if any):
+          <input id="school" type="text" className="w-full p-2 border rounded" />
+        </label>
+
+        <label htmlFor="grade">
+          Current Grade:
+          <select id="grade" className="w-full p-2 border rounded" required>
+            <option value="">Select Grade</option>
+            <option value="grade1">Grade 1</option>
+            <option value="grade2">Grade 2</option>
+          </select>
+        </label>
+
+        <label htmlFor="county">
+          County:
+          <input id="county" type="text" className="w-full p-2 border rounded" />
+        </label>
+
+        <label htmlFor="nationality">
+          Nationality:
+          <input id="nationality" type="text" className="w-full p-2 border rounded" />
+        </label>
+
+        <label htmlFor="studentPhone">
+          Student Phone (if applicable):
+          <input id="studentPhone" type="text" className="w-full p-2 border rounded" />
+        </label>
+
+        <label htmlFor="career">
+          What would you like to be when you grow up?
+          <textarea id="career" className="w-full p-2 border rounded" rows={3} required></textarea>
+        </label>
+
+        <label htmlFor="talent">
+          Talent Declaration (Optional):
+          <textarea id="talent" className="w-full p-2 border rounded" rows={2}></textarea>
+        </label>
+
+        <hr className="my-4" />
+
+        <h2 className="text-xl font-semibold">Parent / Guardian Information</h2>
+
+        <label htmlFor="guardianName">
+          Full Name:
+          <input id="guardianName" type="text" className="w-full p-2 border rounded" required />
+        </label>
+
+        <label htmlFor="relationship">
+          Relationship to Student:
+          <input id="relationship" type="text" className="w-full p-2 border rounded" required />
+        </label>
+
+        <label htmlFor="occupation">
+          Occupation:
+          <input id="occupation" type="text" className="w-full p-2 border rounded" />
+        </label>
+
+        <label htmlFor="guardianPhone">
+          Phone Number:
+          <input id="guardianPhone" type="text" className="w-full p-2 border rounded" required />
+        </label>
+
+        <hr className="my-4" />
+
+        <div className="text-left text-sm">
+          <p className="mb-2 font-medium">Required Attachments:</p>
+          <ul className="list-disc ml-6">
+            <li>One passport-size photo</li>
+            <li>Photocopy of birth certificate</li>
+            <li>Brookhurst Medical Report</li>
+          </ul>
+        </div>
+
+        <div className="mt-4">
+          <label htmlFor="studentSignature">
+            Student Signature:
+            <input id="studentSignature" type="text" className="w-full p-2 border rounded" />
+          </label>
+
+          <label htmlFor="studentDate">
+            Date:
+            <input id="studentDate" type="date" className="w-full p-2 border rounded" />
+          </label>
+
+          <label htmlFor="guardianSignature">
+            Parent/Guardian Signature:
+            <input id="guardianSignature" type="text" className="w-full p-2 border rounded" />
+          </label>
+
+          <label htmlFor="guardianDate">
+            Date:
+            <input id="guardianDate" type="date" className="w-full p-2 border rounded" />
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          className="bg-[#800000] text-white py-2 px-6 rounded-full mt-6 hover:bg-[#660000]"
+        >
+          Submit Application
+        </button>
+      </form>
+    </div>
+  );
+}
+export default function Grade3To6Form() { return ( <div className="bg-[#F8F5F5] p-6 min-h-screen text-[#800000]"> <h1 className="text-2xl font-bold mb-4">Grade 3–6 Sponsorship Application Form (2025/2026)</h1>
+
+<form className="grid gap-4 max-w-3xl mx-auto">
+    <label htmlFor="fullName">
+      Full Name:
+      <input id="fullName" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="gender">
+      Gender:
+      <select id="gender" className="w-full p-2 border rounded" required>
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </label>
+
+    <label htmlFor="dob">
+      Date of Birth:
+      <input id="dob" type="date" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="grade">
+      Current Grade:
+      <select id="grade" className="w-full p-2 border rounded" required>
+        <option value="">Select Grade</option>
+        <option value="grade3">Grade 3</option>
+        <option value="grade4">Grade 4</option>
+        <option value="grade5">Grade 5</option>
+        <option value="grade6">Grade 6</option>
+      </select>
+    </label>
+
+    <label htmlFor="school">
+      Current School:
+      <input id="school" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="location">
+      County/Sub-county of Residence:
+      <input id="location" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="address">
+      Postal Address:
+      <input id="address" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="mobile">
+      Mobile (if any):
+      <input id="mobile" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="interests">
+      Field of Interest:
+      <div className="grid grid-cols-2 gap-2 mt-1">
+        <label><input type="checkbox" /> Human Anatomy</label>
+        <label><input type="checkbox" /> Medicine (General)</label>
+        <label><input type="checkbox" /> Surgery (Minor/Simulation-based)</label>
+        <label><input type="checkbox" /> Engineering (Electrical, Civil, Mechanical, etc.)</label>
+        <label><input type="checkbox" /> Biomedical Science</label>
+        <label><input type="checkbox" /> Environmental Health</label>
+        <label><input type="checkbox" /> Neuroscience</label>
+        <label><input type="checkbox" /> Other: <input type="text" className="ml-2 border p-1 rounded" /></label>
+      </div>
+    </label>
+
+    <label htmlFor="talent">
+      Talent:
+      <input id="talent" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="talentDesc">
+      Describe how you use or practice your talent:
+      <textarea id="talentDesc" className="w-full p-2 border rounded" rows={3}></textarea>
+    </label>
+
+    <hr className="my-4" />
+
+    <h2 className="text-xl font-semibold">Parent / Guardian Information</h2>
+
+    <label htmlFor="guardianName">
+      Full Name:
+      <input id="guardianName" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="relation">
+      Relation to Applicant:
+      <input id="relation" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="guardianPhone">
+      Phone Number:
+      <input id="guardianPhone" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="guardianEmail">
+      Email (if any):
+      <input id="guardianEmail" type="email" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianAddress">
+      Postal Address:
+      <input id="guardianAddress" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="studentSignature">
+      Student Signature:
+      <input id="studentSignature" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="studentDate">
+      Date:
+      <input id="studentDate" type="date" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianSignature">
+      Parent/Guardian Signature:
+      <input id="guardianSignature" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianDate">
+      Date:
+      <input id="guardianDate" type="date" className="w-full p-2 border rounded" />
+    </label>
+
+    <button
+      type="submit"
+      className="bg-[#800000] text-white py-2 px-6 rounded-full mt-6 hover:bg-[#660000]"
+    >
+      Submit Application
+    </button>
+  </form>
+</div>
+
+); }
+
+export default function Grade7To9Form() { return ( <div className="bg-[#F8F5F5] p-6 min-h-screen text-[#800000]"> <h1 className="text-2xl font-bold mb-4">Grade 7–9 (KJESEA) Sponsorship Application Form (2025/2026)</h1>
+
+<form className="grid gap-4 max-w-3xl mx-auto">
+    <label htmlFor="fullName">
+      Full Name:
+      <input id="fullName" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="dob">
+      Date of Birth:
+      <input id="dob" type="date" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="gender">
+      Gender:
+      <select id="gender" className="w-full p-2 border rounded" required>
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </label>
+
+    <label htmlFor="currentSchool">
+      Current School Name:
+      <input id="currentSchool" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="location">
+      County & Sub-county:
+      <input id="location" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="completionYear">
+      Expected KJESEA Completion Year:
+      <input id="completionYear" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="phone">
+      Phone Number:
+      <input id="phone" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="email">
+      Email Address (optional):
+      <input id="email" type="email" className="w-full p-2 border rounded" />
+    </label>
+
+    <label>
+      Preferred School Placement:
+      <div className="mt-1 space-y-1">
+        <label><input type="radio" name="placement" value="brookhurst" /> Brookhurst International School</label><br />
+        <label><input type="radio" name="placement" value="kenyan" /> Recognized Kenyan Senior Secondary School</label>
+      </div>
+    </label>
+
+    <label>
+      Preferred Field of Study:
+      <div className="grid grid-cols-2 gap-2 mt-1">
+        <p className="col-span-2 font-medium">🩺 Medicine Fields:</p>
+        <label><input type="checkbox" /> Human Anatomy</label>
+        <label><input type="checkbox" /> General Medicine</label>
+        <label><input type="checkbox" /> Nursing Sciences</label>
+        <label><input type="checkbox" /> Biomedical Sciences</label>
+        <label><input type="checkbox" /> Dentistry</label>
+        <label><input type="checkbox" /> Pharmacy</label>
+
+        <p className="col-span-2 font-medium mt-2">🔧 Engineering Fields:</p>
+        <label><input type="checkbox" /> Electrical & Electronics Engineering</label>
+        <label><input type="checkbox" /> Mechanical Engineering</label>
+        <label><input type="checkbox" /> Civil Engineering</label>
+        <label><input type="checkbox" /> Mechatronics</label>
+        <label><input type="checkbox" /> Software Engineering</label>
+        <label><input type="checkbox" /> Aerospace Engineering</label>
+
+        <label className="col-span-2">
+          My Dream Course (if not listed above):
+          <input type="text" className="w-full p-2 border rounded" />
+        </label>
+      </div>
+    </label>
+
+    <label htmlFor="mockResults">
+      Mock Results:
+      <p className="text-sm italic">Please attach or fill your most recent certified mock results.</p>
+      <textarea id="mockResults" className="w-full p-2 border rounded" rows={4}></textarea>
+    </label>
+
+    <label htmlFor="talent">
+      Talent Declaration:
+      <textarea id="talent" className="w-full p-2 border rounded" rows={3}></textarea>
+    </label>
+
+    <label htmlFor="motivation">
+      Motivation Statement:
+      <textarea id="motivation" className="w-full p-2 border rounded" rows={5} required></textarea>
+    </label>
+
+    <h2 className="text-xl font-semibold mt-6">Parent / Guardian Information</h2>
+
+    <label htmlFor="guardian1">
+      Parent / Guardian 1 Full Name:
+      <input id="guardian1" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="relation1">
+      Relationship to Student:
+      <input id="relation1" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="id1">
+      National ID Number:
+      <input id="id1" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="residence1">
+      Residence (County/Location):
+      <input id="residence1" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="occupation1">
+      Occupation:
+      <input id="occupation1" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="phone1">
+      Phone Number:
+      <input id="phone1" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <div className="mt-4">
+      <p className="mb-2 font-medium">Required Attachments:</p>
+      <ul className="list-disc ml-6 text-sm">
+        <li>One passport-size photo</li>
+        <li>Certified mock results</li>
+        <li>Copy of Birth Certificate or National ID</li>
+        <li>Motivation statement (if not typed above)</li>
+        <li>Proof of talent (if applicable)</li>
+      </ul>
+    </div>
+
+    <label htmlFor="studentSignature">
+      Student Signature:
+      <input id="studentSignature" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="studentDate">
+      Date:
+      <input id="studentDate" type="date" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianSignature">
+      Parent/Guardian Signature:
+      <input id="guardianSignature" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianDate">
+      Date:
+      <input id="guardianDate" type="date" className="w-full p-2 border rounded" />
+    </label>
+
+    <button
+      type="submit"
+      className="bg-[#800000] text-white py-2 px-6 rounded-full mt-6 hover:bg-[#660000]"
+    >
+      Submit Application
+    </button>
+  </form>
+</div>
+
+); }
+
+export default function Form2To4ApplicationForm() { return ( <div className="bg-[#F8F5F5] p-6 min-h-screen text-[#800000]"> <h1 className="text-2xl font-bold mb-4">Form 2–4 Sponsorship Application Form (2025/2026)</h1>
+
+<form className="grid gap-4 max-w-3xl mx-auto">
+    <label htmlFor="fullName">
+      Full Name:
+      <input id="fullName" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="dob">
+      Date of Birth:
+      <input id="dob" type="date" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="gender">
+      Gender:
+      <select id="gender" className="w-full p-2 border rounded" required>
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </label>
+
+    <label htmlFor="nationality">
+      Nationality:
+      <input id="nationality" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="phone">
+      Phone Number:
+      <input id="phone" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="email">
+      Email (if available):
+      <input id="email" type="email" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="school">
+      School Name:
+      <input id="school" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="county">
+      County & Sub-County:
+      <input id="county" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="kcseYear">
+      KCSE Year (Expected):
+      <input id="kcseYear" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label>
+      Preferred Destination:
+      <div className="mt-1 space-y-1">
+        <label><input type="radio" name="destination" value="kenya" /> Kenya</label><br />
+        <label><input type="radio" name="destination" value="canada" /> Canada</label><br />
+        <label><input type="radio" name="destination" value="oxford" /> Oxford (UK)</label>
+      </div>
+    </label>
+
+    <label>
+      Field of Interest:
+      <div className="grid grid-cols-2 gap-2 mt-1">
+        <label><input type="checkbox" /> Human Anatomy</label>
+        <label><input type="checkbox" /> Biology</label>
+        <label><input type="checkbox" /> Chemistry</label>
+        <label><input type="checkbox" /> Neuroscience</label>
+        <label><input type="checkbox" /> Nursing & Health Sciences</label>
+        <label><input type="checkbox" /> Biomedical Engineering</label>
+        <label><input type="checkbox" /> Medical Laboratory Technology</label>
+        <label><input type="checkbox" /> Other: <input type="text" className="ml-2 border p-1 rounded" /></label>
+      </div>
+    </label>
+
+    <label htmlFor="mockResults">
+      Mock Results:
+      <p className="text-sm italic">Fill or attach a certified copy of your mock results slip.</p>
+      <textarea id="mockResults" className="w-full p-2 border rounded" rows={5}></textarea>
+    </label>
+
+    <label htmlFor="motivation">
+      Motivation Letter:
+      <textarea id="motivation" className="w-full p-2 border rounded" rows={6} required></textarea>
+    </label>
+
+    <h2 className="text-xl font-semibold mt-6">Parent / Guardian Information</h2>
+
+    <label htmlFor="guardian1Name">
+      Parent/Guardian 1 Full Name:
+      <input id="guardian1Name" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="guardian1Relation">
+      Relationship:
+      <input id="guardian1Relation" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="guardian1Phone">
+      Phone Number:
+      <input id="guardian1Phone" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="guardian1ID">
+      ID Number:
+      <input id="guardian1ID" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardian1Residence">
+      Residence (County):
+      <input id="guardian1Residence" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardian1Occupation">
+      Occupation:
+      <input id="guardian1Occupation" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <div className="mt-4">
+      <p className="mb-2 font-medium">Required Attachments:</p>
+      <ul className="list-disc ml-6 text-sm">
+        <li>One (1) passport-size photograph</li>
+        <li>Mock result slip (certified or signed by school official)</li>
+        <li>ID or Birth Certificate copy</li>
+        <li>Motivation Letter</li>
+      </ul>
+    </div>
+
+    <label htmlFor="studentSignature">
+      Student Signature:
+      <input id="studentSignature" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="studentDate">
+      Date:
+      <input id="studentDate" type="date" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianSignature">
+      Parent/Guardian Signature:
+      <input id="guardianSignature" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianDate">
+      Date:
+      <input id="guardianDate" type="date" className="w-full p-2 border rounded" />
+    </label>
+
+    <button
+      type="submit"
+      className="bg-[#800000] text-white py-2 px-6 rounded-full mt-6 hover:bg-[#660000]"
+    >
+      Submit Application
+    </button>
+  </form>
+</div>
+
+); }
+
+export default function UniversityApplicationForm() { return ( <div className="bg-[#F8F5F5] p-6 min-h-screen text-[#800000]"> <h1 className="text-2xl font-bold mb-4">University/College/Polytechnic Sponsorship Application Form – 2025</h1>
+
+<form className="grid gap-4 max-w-3xl mx-auto">
+    <p className="text-sm text-red-600 font-medium">Application Deadline: 1st July 2025</p>
+    <p className="text-sm text-red-600 font-medium mb-4">Brookhurst Medical Report Deadline: 1st July 2025</p>
+
+    <label htmlFor="fullName">
+      Full Name:
+      <input id="fullName" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="gender">
+      Gender:
+      <select id="gender" className="w-full p-2 border rounded" required>
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </label>
+
+    <label htmlFor="dob">
+      Date of Birth:
+      <input id="dob" type="date" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="idNumber">
+      National ID Number:
+      <input id="idNumber" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="phone">
+      Phone Number:
+      <input id="phone" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="institution">
+      Current Institution of Study:
+      <input id="institution" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="course">
+      Course/Program Being Pursued:
+      <input id="course" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="yearOfStudy">
+      Current Year of Study:
+      <input id="yearOfStudy" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="performance">
+      Last Semester Performance (Attach results or state GPA):
+      <textarea id="performance" className="w-full p-2 border rounded" rows={3}></textarea>
+    </label>
+
+    <label htmlFor="purpose">
+      Why are you applying for the Brookhurst Sponsorship?
+      <textarea id="purpose" className="w-full p-2 border rounded" rows={4} required></textarea>
+    </label>
+
+    <label>
+      Preferred Field:
+      <div className="grid grid-cols-2 gap-2 mt-1">
+        <label><input type="checkbox" /> Medicine</label>
+        <label><input type="checkbox" /> Nursing</label>
+        <label><input type="checkbox" /> Surgery</label>
+        <label><input type="checkbox" /> Human Anatomy</label>
+        <label><input type="checkbox" /> Engineering</label>
+        <label><input type="checkbox" /> Architecture</label>
+        <label><input type="checkbox" /> Computer Science</label>
+        <label><input type="checkbox" /> AI</label>
+        <label><input type="checkbox" /> Mechanics</label>
+        <label><input type="checkbox" /> Teaching</label>
+        <label><input type="checkbox" /> Psychology</label>
+        <label><input type="checkbox" /> Agricultural Science</label>
+        <label><input type="checkbox" /> Media</label>
+        <label><input type="checkbox" /> Creative Arts</label>
+        <label><input type="checkbox" /> Business</label>
+        <label><input type="checkbox" /> Law</label>
+        <label><input type="checkbox" /> Education</label>
+        <label className="col-span-2">Other: <input type="text" className="ml-2 border p-1 rounded w-full" /></label>
+      </div>
+    </label>
+
+    <div className="mt-4">
+      <h2 className="text-xl font-semibold mb-2">What Brookhurst Will Cater For (For Selected Applicants)</h2>
+      <ul className="list-disc ml-6 text-sm">
+        <li>Full tuition payment (as per attached school structure)</li>
+        <li>Full school attire/uniform (if applicable)</li>
+        <li>Books, pens, and academic materials</li>
+        <li>Backpack for college use</li>
+        <li>Bi-weekly student pocket money</li>
+        <li>Brookhurst Medical Support (KES 500 report)</li>
+        <li>Monthly financial assistance for jobless parents</li>
+        <li>Research tools and conference participation</li>
+      </ul>
+    </div>
+
+    <label htmlFor="medicalReport">
+      Brookhurst Medical Report:
+      <p className="text-sm italic">Fee: KES 500 – Submit by 1st July 2025</p>
+      <input id="medicalReport" type="file" className="w-full p-2 border rounded" />
+    </label>
+
+    <h2 className="text-xl font-semibold mt-6">Parent / Guardian Information</h2>
+
+    <label htmlFor="guardianName">
+      Full Name:
+      <input id="guardianName" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="guardianRelation">
+      Relationship to Applicant:
+      <input id="guardianRelation" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <label htmlFor="guardianOccupation">
+      Occupation:
+      <input id="guardianOccupation" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianPhone">
+      Contact Number:
+      <input id="guardianPhone" type="text" className="w-full p-2 border rounded" required />
+    </label>
+
+    <div className="mt-4">
+      <p className="mb-2 font-medium">Required Attachments:</p>
+      <ul className="list-disc ml-6 text-sm">
+        <li>Passport-size photo</li>
+        <li>National ID photocopy</li>
+        <li>Official School Fee Structure</li>
+        <li>Brookhurst Medical Report</li>
+      </ul>
+    </div>
+
+    <label htmlFor="studentSignature">
+      Student Signature:
+      <input id="studentSignature" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="studentDate">
+      Date:
+      <input id="studentDate" type="date" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianSignature">
+      Parent/Guardian Signature:
+      <input id="guardianSignature" type="text" className="w-full p-2 border rounded" />
+    </label>
+
+    <label htmlFor="guardianDate">
+      Date:
+      <input id="guardianDate" type="date" className="w-full p-2 border rounded" />
+    </label>
+
+    <button
+      type="submit"
+      className="bg-[#800000] text-white py-2 px-6 rounded-full mt-6 hover:bg-[#660000]"
+    >
+      Submit Application
+    </button>
+  </form>
+</div>
+
+); }
+
